@@ -7,7 +7,7 @@
 //!
 //! ### General config
 //! 1. Where to find the units (one or more directories)
-//! 1. notification-socket directory (where the unix-domain sockets are placed on which services can notify rustysd)
+//! 1. notification-socket directory (where the unix-domain sockets are placed on which services can notify clawctl)
 //! 1. Which unit is the target that should be started
 
 use std::{collections::HashMap, fs::File, io::Read, path::PathBuf};
@@ -147,17 +147,17 @@ fn load_json(
 pub fn load_config(config_path: &Option<PathBuf>) -> (LoggingConfig, Result<Config, String>) {
     let mut settings: HashMap<String, SettingValue> = HashMap::new();
 
-    let default_config_path_json = PathBuf::from("./config/rustysd_config.json");
-    let default_config_path_toml = PathBuf::from("./config/rustysd_config.toml");
+    let default_config_path_json = PathBuf::from("./config/clawctl_config.json");
+    let default_config_path_toml = PathBuf::from("./config/clawctl_config.toml");
 
     let config_path_json = if let Some(config_path) = config_path {
-        config_path.join("rustysd_config.json")
+        config_path.join("clawctl_config.json")
     } else {
         default_config_path_json
     };
 
     let config_path_toml = if let Some(config_path) = config_path {
-        config_path.join("rustysd_config.toml")
+        config_path.join("clawctl_config.toml")
     } else {
         default_config_path_toml.clone()
     };
@@ -177,7 +177,7 @@ pub fn load_config(config_path: &Option<PathBuf>) -> (LoggingConfig, Result<Conf
     std::env::vars().for_each(|(key, value)| {
         let mut new_key: Vec<String> = key.split('_').map(|part| part.to_lowercase()).collect();
         //drop prefix
-        if *new_key[0] == *"rustysd" {
+        if *new_key[0] == *"clawctl" {
             new_key.remove(0);
             let new_key = new_key.join(".");
             settings.insert(new_key, SettingValue::Str(value));

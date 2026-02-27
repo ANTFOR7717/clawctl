@@ -1,3 +1,6 @@
+// Clawctl — ZeroClaw agent orchestration tool
+// Based on rustysd (https://github.com/KillingSpark/rustysd)
+// Original work Copyright (c) 2019 Moritz Borcherding (MIT License)
 //! From the Readme:
 //!
 //! Rustysd is a service manager that tries to replicate systemd behaviour for a subset of the configuration possibilities.

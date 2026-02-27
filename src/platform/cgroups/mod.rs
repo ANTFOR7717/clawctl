@@ -37,7 +37,7 @@ fn use_v2(cgroup_path: &std::path::PathBuf) -> bool {
     exists
 }
 
-const OWN_CGROUP_NAME: &str = "rustysd_self";
+const OWN_CGROUP_NAME: &str = "clawctl_self";
 
 /// moves rustysd into own cgroup if v2 is used
 ///
@@ -51,8 +51,8 @@ pub fn move_to_own_cgroup(base_path: &std::path::PathBuf) -> Result<(), CgroupEr
     if let Some(v2path) = v2path {
         let base_path = base_path.join("unified");
         let absolute_v2path = base_path.join(v2path);
-        let rustysd_subgroup = absolute_v2path.join(format!("rustysd_{}", nix::unistd::getpid()));
-        let manager_cgroup = rustysd_subgroup.join(OWN_CGROUP_NAME);
+        let clawctl_subgroup = absolute_v2path.join(format!("clawctl_{}", nix::unistd::getpid()));
+        let manager_cgroup = clawctl_subgroup.join(OWN_CGROUP_NAME);
         trace!("Manager path: {:?}", manager_cgroup);
         if !manager_cgroup.exists() {
             std::fs::create_dir_all(&manager_cgroup)
@@ -73,7 +73,7 @@ pub fn move_out_of_own_cgroup(base_path: &std::path::PathBuf) -> Result<(), Cgro
         trace!("Move rustysd to parent cgroup: {:?}", parent_group);
         crate::platform::cgroups::move_self_to_cgroup(&parent_group)?;
 
-        let self_cgroup = absolute_v2path.join("rustysd_self");
+        let self_cgroup = absolute_v2path.join("clawctl_self");
         trace!("Remove manager cgroup: {:?}", self_cgroup);
         std::fs::remove_dir(&self_cgroup)
             .map_err(|e| CgroupError::IOErr(e, format!("{:?}", self_cgroup)))?;

@@ -1,8 +1,28 @@
 [package]
-name = "rustysd"
+name = "clawctl"
 version = "0.1.0"
 authors = ["Moritz Borcherding <moritz.borcherding@web.de>"]
 edition = "2018"
+description = "Clawctl — ZeroClaw agent orchestration tool. Manages multiple ZeroClaw agent instances as service units. Based on rustysd."
+
+[lib]
+name = "clawctl"
+
+[[bin]]
+name = "clawctl"
+path = "src/bin/clawctl.rs"
+
+[[bin]]
+name = "clawctl-ctl"
+path = "src/bin/clawctl_ctl.rs"
+
+[[bin]]
+name = "testservice"
+path = "src/bin/testservice.rs"
+
+[[bin]]
+name = "testserviceclient"
+path = "src/bin/testserviceclient.rs"
 
 [dependencies]
 signal-hook = "0.3"
