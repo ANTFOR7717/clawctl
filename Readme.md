@@ -1,3 +1,20 @@
+# Clawctl — ZeroClaw Agent Orchestration Tool
+
+Clawctl is a ZeroClaw agent orchestration tool that manages multiple ZeroClaw agent
+instances as service units. Each agent runs as a ZeroClaw instance with isolated
+workspace and configuration.
+
+Clawctl is built on [Rustysd](https://github.com/KillingSpark/rustysd), a
+systemd-compatible service manager written in Rust. The Rustysd engine provides
+unit lifecycle management, socket activation, dependency ordering, and a JSON-RPC
+control interface.
+
+For architecture details on the Rustysd foundation, see [doc/RustysdArchitecture.md](doc/RustysdArchitecture.md).
+
+---
+
+## Original Rustysd Documentation
+
 # rustysd
 Rustysd is a service manager that tries to replicate systemd behaviour for a subset of the configuration possibilities. It focuses on the core functionality of a service manager, not requiring to be PID1 (aka init process).
 

@@ -1,11 +1,11 @@
 //! RSDCTL
-//! This is a utility to pack cli args into the jsonrpc2 format and send them to rustysd.
+//! This is a utility to pack cli args into the jsonrpc2 format and send them to clawctl.
 //! It will read the answer and pretty print it. In the future there might be a more sophisticated client.
 //! For now this should suffice.
 //!
-//! Note that this doesn't even check for the correctness of commands and there args, this is done by the main binary "rustysd"
+//! Note that this doesn't even check for the correctness of commands and there args, this is done by the main binary "clawctl"
 
-use rustysd::control::jsonrpc2::Call;
+use clawctl::control::jsonrpc2::Call;
 use serde_json::Value;
 use std::io::Write;
 
@@ -14,7 +14,7 @@ fn main() {
     let _exec_name = args.remove(0);
     if args[0] == "--help" {
         println!("
-        This is a utility to pack cli args into the jsonrpc2 format and send them to rustysd.
+        This is a utility to pack cli args into the jsonrpc2 format and send them to clawctl.
         It will read the answer and pretty print it. In the future there might be a more sophisticated client.
         For now this should suffice.
         
